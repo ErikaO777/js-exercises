@@ -1,4 +1,4 @@
-class DefaultMap extends Map {
+export class DefaultMap extends Map {
     constructor(defaultValue) {
         super(); // 親クラスのコンストラクタを呼び出す。
         this.defaultValue = defaultValue; // デフォルト値を記憶する。
@@ -13,7 +13,7 @@ class DefaultMap extends Map {
     }
 }
 // このクラスは、文字頻度ヒストグラムを計算し、表示する。
-class Histogram {
+export class Histogram {
     constructor() {
         this.letterCounts = new DefaultMap(0); // 文字と文字数をマップする。
         this.totalLetters = 0; // 全体の文字数。
