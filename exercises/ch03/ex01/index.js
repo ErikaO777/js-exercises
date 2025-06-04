@@ -1,5 +1,51 @@
-const a = Infinity + NaN;
-const b = Infinity - NaN;
-const c = Infinity * NaN;
-const d = Infinity / NaN;
-console.log("+ , - , * , / → " + a, b, c, d);
+console.log("Infinity + NaN = " + (Infinity + NaN));
+console.log("Infinity - NaN = " + (Infinity - NaN));
+console.log("Infinity * NaN = " + (Infinity * NaN));
+console.log("Infinity / NaN = " + (Infinity / NaN));
+
+console.log("-Infinity + NaN = " + (-Infinity + NaN));
+console.log("-Infinity - NaN = " + (-Infinity - NaN));
+console.log("-Infinity * NaN = " + (-Infinity * NaN));
+console.log("-Infinity / NaN = " + (-Infinity / NaN));
+
+console.log("NaN + Infinity = " + (NaN + Infinity));
+console.log("NaN - Infinity = " + (NaN - Infinity));
+console.log("NaN * Infinity = " + (NaN * Infinity));
+console.log("NaN / Infinity = " + (NaN / Infinity));
+
+console.log("NaN + (-Infinity) = " + (NaN + -Infinity));
+console.log("NaN - (-Infinity) = " + (NaN - -Infinity));
+console.log("NaN * (-Infinity) = " + (NaN * -Infinity));
+console.log("NaN / (-Infinity) = " + (NaN / -Infinity));
+
+console.log("NaN + NaN = " + (NaN + NaN));
+console.log("NaN - NaN = " + (NaN - NaN));
+console.log("NaN * NaN = " + (NaN * NaN));
+console.log("NaN / NaN = " + (NaN / NaN));
+
+console.log("Infinity + Infinity = " + (Infinity + Infinity));
+console.log("Infinity - Infinity = " + (Infinity - Infinity));
+console.log("Infinity * Infinity = " + (Infinity * Infinity));
+console.log("Infinity / Infinity = " + (Infinity / Infinity));
+
+console.log("NaN + (-NaN) = " + (NaN + -NaN));
+console.log("NaN - (-NaN) = " + (NaN - -NaN));
+console.log("NaN * (-NaN) = " + (NaN * -NaN));
+console.log("NaN / (-NaN) = " + (NaN / -NaN));
+
+console.log("Infinity + (-Infinity) = " + (Infinity + -Infinity));
+console.log("Infinity - (-Infinity) = " + (Infinity - -Infinity));
+console.log("Infinity * (-Infinity) = " + (Infinity * -Infinity));
+console.log("Infinity / (-Infinity) = " + (Infinity / -Infinity));
+
+console.log("-NaN + (-NaN) = " + (-NaN + -NaN));
+console.log("-NaN - (-NaN) = " + (-NaN - -NaN));
+console.log("-NaN * (-NaN) = " + (-NaN * -NaN));
+console.log("-NaN / (-NaN) = " + (-NaN / -NaN));
+
+console.log("-Infinity + (-Infinity) = " + (-Infinity + -Infinity));
+console.log("-Infinity - (-Infinity) = " + (-Infinity - -Infinity));
+console.log("-Infinity * (-Infinity) = " + (-Infinity * -Infinity));
+console.log("-Infinity / (-Infinity) = " + (-Infinity / -Infinity));
+
+//NaNにマイナスが付けられるのはなぜ？
