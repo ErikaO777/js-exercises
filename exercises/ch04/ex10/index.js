@@ -8,6 +8,7 @@ delete list[3];
 console.log("内容 " + list);
 console.log("長さ " + list.length);
 
+// 結果
 // 内容 r,i,c,o,h
 // 長さ 5
 // 内容 r,i,c,,h

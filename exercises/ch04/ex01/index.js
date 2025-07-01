@@ -1,14 +1,14 @@
-let obj = {
+let complex = {
     real : 1,
     imaginary : 2,
  };
 
-let add = function(obj) { return obj.real + obj.imaginary; };
-let sub = function(obj) { return obj.real - obj.imaginary; };
-let mul = function(obj) { return obj.real * obj.imaginary; };
-let div = function(obj) { return obj.real / obj.imaginary; };
+export let add = function(obj) { return obj.real + obj.imaginary; };
+export let sub = function(obj) { return obj.real - obj.imaginary; };
+export let mul = function(obj) { return obj.real * obj.imaginary; };
+export let div = function(obj) { return obj.real / obj.imaginary; };
 
-console.log("add = " + add(obj));
-console.log("sub = " + sub(obj));
-console.log("mul = " + mul(obj));
-console.log("div = " + div(obj));
+console.log("add = " + add(complex));
+console.log("sub = " + sub(complex));
+console.log("mul = " + mul(complex));
+console.log("div = " + div(complex));

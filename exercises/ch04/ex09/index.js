@@ -12,3 +12,11 @@ console.log("functionは " + typeof function () {});
 // NaNはobject
 // 0はnumber
 // functionはfunction
+
+// 結果
+// undefinedは undefined
+// nullは object
+// objectは object
+// NaNは number
+// 0は number
+// functionは function
