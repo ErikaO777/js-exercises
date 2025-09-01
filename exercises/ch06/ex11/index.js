@@ -17,6 +17,7 @@ export const obj = {
    }
    // 現在のyの値を計算で求める
    const currentY = this.r * Math.sin(this.theta); // xの値の変更に伴い、yの値も変更されるので現在のyの値を求める
+   // const currentY = this.y; // これでも良い 計算前にとっておく
    this.r = Math.sqrt(newvalue * newvalue + currentY * currentY);
    this.theta = Math.atan2(currentY, newvalue);
  },

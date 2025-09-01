@@ -36,7 +36,11 @@ export class LinkedList {
 /**
  * 要素のpush回数を記録するLinkedList
  */
-export class InstrumentedLinkedList extends LinkedList {
+export class InstrumentedLinkedList {
+    constructor() {
+    this.instrumentedLinkedList = new LinkedList();
+    this.#pushCount = 0;
+  }
   #pushCount = 0;
 
   /**
@@ -46,13 +50,13 @@ export class InstrumentedLinkedList extends LinkedList {
     return this.#pushCount;
   }
 
-  push(item) {
-    super.push(item);
+  push(item) { // pushは要素1つ
+    this.instrumentedLinkedList.push(item); // 親クラスのpushにitemを渡す
     this.#pushCount++;
   }
 
-  pushAll(...items) {
-    super.pushAll(...items);
-    this.#pushCount += items.length;
+  pushAll(...items) { // pushAllは要素複数
+    this.instrumentedLinkedList.pushAll(...items); // 親クラスのpushにitemを渡す
+    this.#pushCount += items.length; // itemの長さ分を足す
   }
 }
