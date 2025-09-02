@@ -1,6 +1,9 @@
+import { error } from "console";
+
+// f()とfの呼び方によってスコープが違う
 export function counterGroup() {
   return {
-    counter: null,
+    counter: [], // カウンターは配列にする（すべてのカウンターを記録）
 
     newCounter: function () {
       let n = 0;
@@ -17,17 +20,15 @@ export function counterGroup() {
           return n;
         },
       };
-      this.counter = countObj;
+      this.counter.push(countObj);
       return countObj;
     },
 
     total: function () {
       let total = 0;
       try {
-        let nowCount = this.counter.getCount();
-        console.log("現在のカウントは: " + nowCount);
-        for (let i = 0; i < nowCount ; i++) {
-          total += i;
+        for (let i = 0; i < this.counter.length ; i++) {
+          total += this.counter[i].getCount();
         }
         return total;
       } catch (error) {
@@ -36,27 +37,22 @@ export function counterGroup() {
     },
 
     average: function () {
-      let total = this.total(); // それぞれオブジェクト内の関数から取得
-      let nowCount = this.counter.getCount();
-      if (nowCount === 0) {
+      if (this.counter.length === 0) {
         throw new TypeError();
       }
-      return total / nowCount;
+      return this.total() / this.counter.length;
     },
 
     variance: function () {
-      let avg = this.average();
-      let totalSquare = 0;
-      let nowCount = this.counter.getCount();
-      if (nowCount === 0) {
+      if (this.counter.length <= 2) {
         throw new TypeError();
       }
-      let countNum = 1; // カウント数
-      for (let i = 1; i < nowCount; i++) {
-        totalSquare += (countNum - avg) ** 2;
-        countNum++;
+      let avg = this.average();
+      let totalSquare = 0;
+      for (let i = 0; i < this.counter.length; i++) {
+        totalSquare += (this.counter[i].getCount() - avg) ** 2;
       }
-      return totalSquare / nowCount;
+      return totalSquare / this.counter.length;
     },
   };
 }
@@ -67,4 +63,8 @@ let c1 = cg.newCounter();
 console.log(c1.count());
 console.log(c1.count());
 console.log(c1.count());
+console.log(cg.total());
+let c2 = cg.newCounter();
+console.log(c2.count());
+console.log(c2.count());
 console.log(cg.total());

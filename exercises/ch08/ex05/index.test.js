@@ -6,6 +6,11 @@ describe("sequenceToObject", () => {
   expect(sequenceToObject("c", 3, "d", 4, "e", 5)).toEqual({ c: 3, d: 4, e: 5 });
   });
 
+  test("スプレッド演算子の確認", () => {
+    let list = ["a", 100, "b", 200];
+    expect(sequenceToObject(...list)).toEqual({ a: 100, b: 200 });
+  });
+
   test("異常", () => {
   expect(() => sequenceToObject("f", 6, "g")).toThrow("引数の個数が奇数です");
   expect(() => sequenceToObject("h", 7, 8, 9)).toThrow("キーの型がstringではありません");

@@ -148,8 +148,3 @@ export class AlarmClock {
   }
 
 }
-
-// 確認
-const clock = new AlarmClock();
-console.log(clock.state);
-console.log(clock.state instanceof normal);
