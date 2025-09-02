@@ -1,5 +1,3 @@
-import { error } from "console";
-
 // f()とfの呼び方によってスコープが違う
 export function counterGroup() {
   return {
@@ -44,7 +42,7 @@ export function counterGroup() {
     },
 
     variance: function () {
-      if (this.counter.length <= 2) {
+      if (this.counter.length < 2) {
         throw new TypeError();
       }
       let avg = this.average();
