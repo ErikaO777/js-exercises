@@ -1,6 +1,6 @@
 // GoFのStateパターンとは、オブジェクトの状態に応じて振る舞いが変わるようにするデザインパターンのこと
 
-// 目覚まし時計の状態
+// 目覚まし時計の状態:
 // 通常
 // アラームセット中
 // アラーム鳴動中
@@ -43,6 +43,10 @@ export class normal extends clockState { // 通常状態　→ アラームセ�
         clock.setState(new alarmSet());
         return Symbol("setAlarm");
     }
+
+    getState() {
+        return Symbol("normal");
+    }
 }
 
 // アラームセット中状態
@@ -58,6 +62,10 @@ export class alarmSet extends clockState { // アラームセット中 →通常
         clock.setState(new alarmSounding());
         return Symbol("reachedToAlarmTime");
     }
+
+    getState() {
+        return Symbol("alarmSet");
+    }
 }
 
 // アラーム鳴動中状態
@@ -71,6 +79,10 @@ export class alarmSounding extends clockState { // アラーム鳴動中 →ス�
         // アラームを解除する
         clock.setState(new normal());
         return Symbol("cancelAlarm");
+    }
+
+    getState() {
+        return Symbol("alarmSounding");
     }
 }
 
@@ -87,6 +99,10 @@ export class snoozing extends clockState { // スヌーズ中 → アラーム�
         clock.setState(new normal());
         return Symbol("cancelAlarm");
     }
+
+    getState() {
+        return Symbol("snoozing");
+    }
 }
 
 // -------------------------- 目覚まし時計本体 --------------------------------
@@ -95,11 +111,15 @@ export class AlarmClock {
   #state; // private な属性
 
   constructor() {
-    this.#state = new clockState;
+    this.#state = new normal(); // 初期状態は通常
   }
 
   setState(state) {
     this.#state = state;
+  }
+
+  getState() {
+    return this.#state;
   }
 
   // アラームの設定
@@ -128,3 +148,8 @@ export class AlarmClock {
   }
 
 }
+
+// 確認
+const clock = new AlarmClock();
+console.log(clock.state);
+console.log(clock.state instanceof normal);
