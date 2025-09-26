@@ -4,6 +4,11 @@
 // 戦士クラス
 export class warriorClass {
   atk;
+
+  constructor(atk) {
+    this.atk = atk;
+  }
+
   attack() {
     return this.atk * 2;
   }
@@ -11,8 +16,9 @@ export class warriorClass {
 
 export class magicWarriorClass extends warriorClass {
   mgc;
-  constructor() {
-    super();
+  constructor(atk, mgc) {
+    super(atk);
+    this.mgc = mgc;
   }
   magicAttack() {
     return this.attack() + this.mgc;

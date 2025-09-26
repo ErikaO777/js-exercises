@@ -1,5 +1,5 @@
-// 問題の挿入ソート
-function inserSort(
+// 挿入ソート
+function insertSort(
   array,
   compare = (lhs, rhs) => (lhs < rhs ? -1 : lhs > rhs ? +1 : 0)
 ) {
