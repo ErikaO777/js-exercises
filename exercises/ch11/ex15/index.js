@@ -23,7 +23,7 @@ export function modifyUrl(obj) {
   if (queryParams) {
     for (let i = 0; i < queryParams.length; i++) {
       const [key, value] = queryParams[i];
-      newURL.searchParams.append(key, value);
+      newURL.searchParams.append(key, value); // クエリのパラメータ設定を追加してurl修正
     }
   }
   return newURL.href;

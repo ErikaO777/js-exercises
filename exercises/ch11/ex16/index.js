@@ -9,7 +9,7 @@ export function retryWithExponentialBackoff(func, maxRetry, callback){
             if(maxRetry > 0){ // 最大リトライ回数より小さい場合
                 console.log(`リトライ`);
                 count++;
-                retryWithExponentialBackoff(func, maxRetry - 1, callback); // ここでfunc?
+                retryWithExponentialBackoff(func, maxRetry - 1, callback); // ここでfunc?再帰?
             }else{
                 console.log("最大リトライ回数に達しました。");
                 callback(false);
@@ -18,8 +18,6 @@ export function retryWithExponentialBackoff(func, maxRetry, callback){
     }else if(result === true){
         callback(true);
     }
-
-
 
 }
 

@@ -4,10 +4,10 @@
 export function detectFileType(data) {
   // 受け取ったデータをビッグエンディアンで読み込む
   let result;
-  let setData = [];
+  let setData = []; // 新しく配列を定義
   const dataView = new DataView(data);
 
-  const type = {
+  const type = { // ファイルの種類の定義
     PDF: [
       0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x0a, 0x25, 0xc3, 0xa4,
       0xc3, 0xbc, 0xc3, 0xb6,
@@ -23,7 +23,7 @@ export function detectFileType(data) {
   };
 
   for (let i = 0; i < dataView.byteLength; i++) {
-    setData.push(dataView.getUint8(i, false));
+    setData.push(dataView.getUint8(i, false)); // 配列にビッグエンディアンで値を格納
   }
 
   console.log(setData);

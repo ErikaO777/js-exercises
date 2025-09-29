@@ -1,8 +1,8 @@
 export function stringifyJSON(json) {
-  let stringJson; // 新しくオブジェクトを作成し、ここに入れていく
+  let stringJson; // 新しくオブジェクトを作成し、ここにシリアライズしたものを入れていく
 
   if (Array.isArray(json)) {
-    // 配列
+    // 引数が配列
     stringJson = json.map((item) => { // さらに中身のタイプによって分岐
       if (item === null || item === undefined) return "null";
       if (typeof item === "number") return item;
@@ -13,11 +13,11 @@ export function stringifyJSON(json) {
     return `[${stringJson.join(",")}]`;
 
   } else if (typeof json === "object") {
-    // オブジェクト
+    // 引数がオブジェクト
     if (Object.keys(json).length) {
       // キーがある場合はキーペアで格納
       stringJson = Object.entries(json).map(
-        ([key, val]) => `"${key}":${val.toString()}`
+        ([key, val]) => `"${key}":"${val}"`
       );
       return `{${stringJson.join(",")}}`;
     } else {

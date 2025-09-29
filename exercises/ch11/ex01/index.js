@@ -6,8 +6,13 @@ export class TypeMap{
     }
 
     get(key){
-        if (this.list.has(key)) {
-            return this.list.get(key);
+        if (typeof key === "function" && key.prototype && this.list.has(key) ) {
+            // プリミティブ値はラッパークラスであれば◎
+            if (key === String || key === Number || key === Boolean) { // ラッパークラス
+                return this.list.get(key);
+            } else {
+                return this.list.get(key);
+            }
         } else {
             throw new Error("Not found");
         }
@@ -16,6 +21,7 @@ export class TypeMap{
     set(key, value){
         // keyがコンストラクタ関数かチェック
         if (typeof key === "function" && key.prototype && key.prototype.constructor === key) { // 関数かつ、プロトタイプを持ち、コンストラクタが自身
+            // プリミティブ値はラッパークラスであれば◎
             if (key === String && (typeof value === "string" || value instanceof String)) {
                 this.list.set(key, value);
             } else if (key === Number && (typeof value === "number" || value instanceof Number)) {
@@ -36,7 +42,7 @@ export class TypeMap{
 }
 
 
-// 以下をクリアする
+// ---------- 以下をクリアする -------------------
 class Foo {}
 const typeMap = new TypeMap();
 // set

@@ -34,7 +34,7 @@ export function isEmailAddress(email) {
     return false;
   }
 
-  // 連続するドットや先頭や末尾のドットをチェック
+  // 連続するドットや先頭や末尾のドットをチェック ..(.の連続文字)はうまく定義できなかった。。。
   if (
     local.includes("..") ||
     local.startsWith(".") ||
