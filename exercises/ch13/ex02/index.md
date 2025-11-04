@@ -96,10 +96,10 @@ gantt
         logA: l1, after w1, 0.5s
         wait2 : w2, after l1, 2s
         logB : l2, after w2, 0.5s
-        log : l2, after w2, 0.5s
+        logC : l2, after w2, 0.5s
 ```
 
-#### f7
+#### 結果
 wait1
 wait2
 A
@@ -115,7 +115,7 @@ gantt
     axisFormat |
         wait1 : w1, 0, 1s
         errX: e1, after w1, 0.5s
-        msg(errY) : m, after e1, 1s
+        msg(errX) : m, after e1, 1s
         logA : l2, after m, 0.5s
 ```
 
@@ -125,7 +125,6 @@ Error X occurred
 A
 
 ### f9
-1つ目のエラーがキャッチされるため、2つめのエラーは無視される。
 ```mermaid
 gantt
     title f9
@@ -153,12 +152,11 @@ gantt
         wait1 : w1, 0, 1s
         42: n, after w1, 0.5s
         errY : m, after n, 1s
-        logA : l2, after m, 0.5s
 ```
 
 #### 結果
 wait1
-A
+A　←Aも呼ばれる
 throw new　Error: Error Y occurred
 
 ### f11

@@ -46,23 +46,23 @@ const iter = counterIter(5);
 const gen = counterGen(5);
 
 // 明示的にイテレータプロトコルの next() を呼び出す
-console.log("イテレータのnext():");
-console.log(iter.next());
-console.log("ジェネレータのnext():");
-console.log(gen.next());
+// console.log("イテレータのnext():");
+// console.log(iter.next());
+// console.log("ジェネレータのnext():");
+// console.log(gen.next());
 
-// // 明示的にイテレータプロトコルの return() を呼び出す
-console.log("イテレータのreturn():");
-console.log(iter.return("終了"));
-console.log("ジェネレータのreturn():");
-console.log(gen.return("終了"));
+// // // 明示的にイテレータプロトコルの return() を呼び出す
+// console.log("イテレータのreturn():");
+// console.log(iter.return("終了"));
+// console.log("ジェネレータのreturn():");
+// console.log(gen.return("終了"));
 
-// 明示的にイテレータプロトコルの throw() を呼び出す
-// console.log(iter.throw(new Error("例外発生")));
-console.log(gen.throw(new Error("例外発生")));
+// // 明示的にイテレータプロトコルの throw() を呼び出す
+// // console.log(iter.throw(new Error("例外発生")));
+// console.log(gen.throw(new Error("例外発生")));
 
 // console.log("counterIterのループ");
-// // for-of ループを実行
+// for-of ループを実行
 // for (const v of iter) {
 //   console.log(v);
 // }
@@ -79,14 +79,14 @@ console.log(gen.throw(new Error("例外発生")));
 // console.log("counterIterのループ-途中で break 完了");
 
 // for-of ループを実行中に例外発生
-// console.log("counterIterのループ-途中で例外発生");
-// for (const v of iter) {
-//   console.log(v);
-//   if (v === 2) {
-//     throw new Error("例外発生");
-//   }
-// }
-// console.log("counterIterのループ-途中で例外発生 完了");
+console.log("counterIterのループ-途中で例外発生");
+for (const v of iter) {
+  console.log(v);
+  if (v === 2) {
+    throw new Error("例外発生");
+  }
+}
+console.log("counterIterのループ-途中で例外発生 完了");
 
 // console.log("--------- ここからジェネレータ ---------");
 // console.log("counterGenのループ");

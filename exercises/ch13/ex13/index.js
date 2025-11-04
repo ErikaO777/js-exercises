@@ -5,7 +5,7 @@ export async function* walk(rootPath) {
     let list = [];
     const items = await fsPromises.readdir(rootPath);
 
-    for (const item of items) {
+    for (const item of items) { // for-ofを使う。Promise.allでは使えない
         const fullPath = path.join(rootPath, item);
         const fileinfo = await fsPromises.stat(fullPath);
         const data = { path: fullPath, isDirectory: fileinfo.isDirectory() };
