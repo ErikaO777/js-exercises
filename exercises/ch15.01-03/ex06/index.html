@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <title>test page</title>
+</head>
+
+<body>
+    <p>Hello World!</p>
+    <p id="agent"></p>
+    <p id="hid"></p>
+    <p id="lang"></p>
+</body>
+
+<script type="module">
+    document.getElementById("agent").innerHTML = navigator.userAgent;
+    document.getElementById("hid").innerHTML = navigator.hid;
+    document.getElementById("lang").innerHTML = navigator.language;
+</script>
+
+</html>
