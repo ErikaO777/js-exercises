@@ -5,17 +5,49 @@
     <meta charset="utf-8" />
     <title>test page</title>
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        background-color: #ffe055;
+    }
+
+    h1 {
+        color: #c9100a;
+    }
+
+    div {
+        margin: 20px;
+        font-size: 18px;
+    }
+
+    #info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 100%;
+    }
+</style>
 
 <body>
-    <p>Hello World!</p>
-    <p id="agent"></p>
-    <p id="hid"></p>
-    <p id="lang"></p>
+    <h1>🙏ご利用ありがとうございました🙏</h1>
+    <div>ご購入者様情報</div>
+    <div id="info">
+        <div>OS：<p id="agent"></p>
+        </div>
+        <div>プラットフォーム：<p id="hid"></p>
+        </div>
+        <div>ユーザー言語：<p id="lang"></p>
+        </div>
+    </div>
+
+
 </body>
 
 <script type="module">
     document.getElementById("agent").innerHTML = navigator.userAgent;
-    document.getElementById("hid").innerHTML = navigator.hid;
+    document.getElementById("hid").innerHTML = navigator.platform;
     document.getElementById("lang").innerHTML = navigator.language;
 </script>
 

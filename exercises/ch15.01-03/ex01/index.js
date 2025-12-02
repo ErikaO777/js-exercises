@@ -58,6 +58,11 @@ form.addEventListener("submit", (e) => {
 // formからsubmitされるとき、データがサーバへ送信されるほか、ブラウザはページを再読み込みしてしまう。
 // これを防ぐために、最初にイベントをキャンセルする。（入力内容を保持するため）
 
+// index.html ファイル内の script タグから type="module" 属性を削除した場合は？
+//　type="module"が削除されると、このjsファイルはモジュール方式で読み込まれなくなってしまう。
+// → importなどが使えない。module方式で読み込ませず、jsファイルを読み込ませて期待通りに動かすには？？
+
 // 参考
 // イベントキャンセル　https://qiita.com/tamakiiii/items/f47e38bb8f03ef92f298
 // 文字修飾　https://developer.mozilla.org/ja/docs/Web/CSS/Reference/Properties/text-decoration-line
+// type="module"  https://qiita.com/Hachi_3/items/2aea0225a2b4b9315941

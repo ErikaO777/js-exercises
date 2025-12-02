@@ -8,9 +8,14 @@ console.log(globalThis.foo); // 123
 `
 
 - global：node
+使い方はglobalThisと同じ。
 
-
-- window：ブラウザ
+- this
+関数ではないトップレベルではthisはグローバルオブジェクトになる。
+`
+foo = 123;
+console.log(this.foo); // this.fooは123
+`
 
 ### 比較
 

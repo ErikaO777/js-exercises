@@ -187,13 +187,13 @@ const errY = () => {
 // // console.log("f2:");
 // f2();
 // console.log("f3:");
-// f3();
+f3();
 // console.log("f4:");
 // f4();
 // console.log("f5:");
 // f5();
 // console.log("f6:");
-f6();
+// f6();
 // console.log("f7:");
 // f7();
 // console.log("f8:");
