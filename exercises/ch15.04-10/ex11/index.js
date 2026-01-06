@@ -43,6 +43,21 @@ form.addEventListener("submit", (e) => {
   renderTodos(todos);
 });
 
+// hashchangeはURLの#以降が変わったときに発生する
+// それぞれボタンを押すとURLの#以下が変わる
 window.addEventListener("hashchange", () => {
   // ここを実装してね
+  const hash = location.hash;
+  // todosの中にcompletedのtrue/falseが格納されているのでこれでフィルタ
+  // ＃以下がactive, completedの場合
+  if (hash === "#/active") {
+    renderTodos(todos.filter((todo) => !todo.completed)); // activeの場合はcompletedがfalse
+  } else if (hash === "#/completed") {
+    renderTodos(todos.filter((todo) => todo.completed)); // completedの場合はcompletedがtrue
+  } else {
+    renderTodos(todos); // それ以外（全部表示）
+  }
+
 });
+
+// 実装前はActive, Completedフィルタボタンを押しても何も起こらない

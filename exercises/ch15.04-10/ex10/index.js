@@ -44,9 +44,33 @@ function updateGrid(grid) {
   // 新しいグリッドを作成
   const nextGrid = grid.map((arr) => [...arr]);
 
+  // row と col をループして各セルを更新
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
       // 周囲のセルの生存数を数えて nextGrid[row][col] に true or false を設定する (実装してね)
+      let n = 0;
+      const alive = grid[row][col];
+
+      for (let dx = -1; dx <= 1; dx++) {
+        for (let dy = -1; dy <= 1; dy++) {
+          if (dx === 0 && dy === 0) continue;
+          const nx = col + dx, ny = row + dy;
+          if (nx >= 0 && nx < COLS && ny >= 0 && ny < ROWS) {
+            n += grid[ny][nx];
+          }
+        }
+      }
+
+      // 誕生・生存・死滅のルール
+      // - 誕生: dead && cnt==3
+      // - 生存: alive && (cnt==2 || cnt==3)
+      // - それ以外は死/維持（deadのまま）
+      if (alive) {
+        nextGrid[row][col] = n === 2 || n === 3;
+      } else {
+        nextGrid[row][col] = n === 3;
+      }
+
     }
   }
   return nextGrid;
@@ -65,11 +89,14 @@ canvas.addEventListener("click", function (evt) {
 });
 
 // requestAnimationFrame によって一定間隔で更新・描画を行う
-// NOTE: リフレッシュレートの高い画面では速く実行される (これを防ぐ場合は下記の例を参照)
+// TODO: リフレッシュレートの高い画面では速く実行されてしまうため、以下を参考に更新頻度が常に一定となるようにしなさい
+// 表示の更新頻度を一定にするにはrequestAnimationFrameの第一引数にコールバック関数を渡す
+// フレーム数依存ではなく経過時間に対しての進行量の設定が必要
 // https://developer.mozilla.org/ja/docs/Web/API/Window/requestAnimationFrame
 function update() {
   grid = updateGrid(grid);
   renderGrid(grid);
+  // 第一引数指定でリフレッシュレートを制御する
   animationId = requestAnimationFrame(update);
 }
 
@@ -91,3 +118,7 @@ pauseButton.addEventListener("click", () => {
 });
 
 renderGrid(grid);
+
+
+// 参考
+// https://snap-roll-blog.blogspot.com/2015/08/javascript.html

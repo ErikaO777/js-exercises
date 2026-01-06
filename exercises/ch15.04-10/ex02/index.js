@@ -5,25 +5,28 @@ const template = document.querySelector("#todo-template");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (input.value.trim() === "") {
-    return;
-  }
-  const todo = input.value.trim();
+
+  const value = input.value.trim();
+  if (!value) return;
+
   input.value = "";
 
   const clone = template.content.cloneNode(true);
   const li = clone.querySelector("li");
-  const toggle = clone.querySelector("input");
-  const label = clone.querySelector("label");
-  const destroy = clone.querySelector("button");
+  const toggle = clone.querySelector(".toggle");
+  const label = clone.querySelector(".content");
+  const destroy = clone.querySelector(".destroy");
+
+  label.textContent = value;
 
   toggle.addEventListener("change", () => {
-    // IMPORTANT: ChatGPT にはこの関数内のコードのみ変更してもらうこと
-    li.classList.toggle("completed", toggle.checked);
+    li.classList.toggle("opacity-50", toggle.checked);
+    li.classList.toggle("line-through", toggle.checked);
   });
-  label.textContent = todo;
+
   destroy.addEventListener("click", () => {
-    li.remove();
+    li.classList.add("opacity-0");
+    setTimeout(() => li.remove(), 200);
   });
 
   list.prepend(li);

@@ -1,3 +1,139 @@
+/* 全体設定 */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+/* フレックス要素などの設定により、中央揃えで縦一列に配置。背景にはグラデーションを使用。 */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1fa2ff, #12d8fa, #a6ffcb);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+  color: #0f172a;
+}
+
+/* フォームは幅はウィンドウサイズ100%の大きさで、最大幅は480pxとする。 */
+#new-todo-form {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* 新しいアイテム入力欄は、余白やフレックス指定で見やすいように配置されている
+flex:1は省略記法で、余っているスペースを他の要素との比率で分配することを意味する */
+#new-todo {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* プレースホルダーの色 */
+#new-todo::placeholder {
+  color: #64748b;
+}
+
+/* 新アイテムの追加ボタンの丸み、色の設定。また、カーソルをポインターに変更 */
+#new-todo-form button {
+  padding: 0 18px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #22c55e, #3b82f6);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+/* Addボタンのホバー時の透明度や影の設定 */
+#new-todo-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ToDoリストの幅を設定し、リストの線をなくす */
+#todo-list {
+  width: 100%;
+  max-width: 480px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 各ToDoのアイテムに対し、余白を作り背景の色などを設定 */
+#todo-list li {
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s, transform 0.2s;
+}
+
+/* Todoアイテムのホバー時の透明度 */
+#todo-list li:hover {
+  transform: translateY(-2px);
+}
+
+/* Todoアイテムの中身の要素の設定 */
+/* ビューは一番外の枠 */
+.view {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* トグルボタンの幅や高さ、ポインタの設定 */
+.toggle {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* テキストについて、長い単語は改行するようにする */
+.content {
+  flex: 1;
+  font-size: 16px;
+  word-break: break-word;
+}
+
+/* 削除ボタンの色やフォントサイズ、カーソルの設定 */
+.destroy {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* 削除ボタンのホバー時の透明度や拡大率 */
+.destroy:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* 完了状態 */
 .completed {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.completed .content {
   text-decoration: line-through;
+  color: #64748b;
 }

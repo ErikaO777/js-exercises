@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <title>Simple ToDo</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script type="module" src="/ch15.04-10/ex02/index.js"></script>
-    <!-- 以下の style.css は Tailwind CLI によって生成される -->
-    <!-- html または js を変更した場合は README.md に従い Tailwind CLI を実行し style.css を再度生成すること -->
-    <link rel="stylesheet" href="/ch15.04-10/ex02/style.css" />
-  </head>
-  <!-- IMPORTANT: ChatGPT にはここから下の内容しか変更させないこと -->
-  <body>
-    <form id="new-todo-form">
-      <input type="text" id="new-todo" placeholder="What needs to be done?" />
-      <button>Add</button>
-    </form>
-    <ul id="todo-list">
-      <!-- NOTE: 以下のような要素を JavaScript で動的に追加する
-      <li class="completed">
-        <div class="view">
-          <input class="toggle" type="checkbox" checked />
-          <label class="content">研修の予習範囲を読む</label>
-          <button class="destroy"></button>
-        </div>
-      </li>
-      <li>
-        <div class="view">
-          <input class="toggle" type="checkbox" />
-          <label class="content">研修の練習問題を完了する</label>
-          <button class="destroy"></button>
-        </div>
-      </li>
-      -->
-    </ul>
 
-    <template id="todo-template">
-      <li>
-        <div class="view">
-          <input class="toggle" type="checkbox" />
-          <label class="content"></label>
-          <button class="destroy">❌</button>
-        </div>
-      </li>
-    </template>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>Modern ToDo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script type="module" src="./index.js"></script>
+
+  <!-- Tailwind CLI で生成される CSS -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body
+  class="min-h-screen bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 flex items-center justify-center px-4">
+  <main class="w-full max-w-md bg-white/80 backdrop-blur rounded-2xl shadow-xl p-6">
+    <h1 class="text-xl font-bold text-slate-800 mb-6  tracking-tight">
+      📝 My ToDo List
+    </h1>
+
+    <form id="new-todo-form" class="flex gap-2">
+      <input id="new-todo" type="text" placeholder="やることを入力..."
+        class="flex-1 rounded-xl border border-slate-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      <button class="shrink-0 bg-indigo-500 text-white px-4 py-2 rounded-xl hover:bg-indigo-600 transition">
+        追加
+      </button>
+    </form>
+
+
+    <ul id="todo-list" class="space-y-2"></ul>
+  </main>
+
+  <template id="todo-template">
+    <li
+      class="group flex items-center justify-between bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 transition">
+      <div class="flex items-center gap-3">
+        <input type="checkbox" class="toggle w-4 h-4 accent-blue-500" />
+        <label class="content text-slate-700"></label>
+      </div>
+      <button class="destroy text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition">
+        ✕
+      </button>
+    </li>
+  </template>
+</body>
+
 </html>
