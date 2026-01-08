@@ -42,7 +42,7 @@ document.getElementById("image").addEventListener("change", (event) => {
     //
     // TODO: ここで imageData.data を参照して outputData に結果を格納
 
-    // 5x5のガウシアンカーネルとする
+    // 5x5のガウシアンカーネルとする（フィルタ行列）
     const kernel = [
       [1, 4, 6, 4, 1],
       [4, 16, 24, 16, 4],
@@ -53,8 +53,8 @@ document.getElementById("image").addEventListener("change", (event) => {
     const kHalf = 2; // 5x5 の半分
     const kSum = 256;
 
-    // 畳み込み
-    const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+    // 畳み込み　（２D畳み込み）
+    const clamp = (v, a, b) => (v < a ? a : v > b ? b : v); // clamp関数でvを範囲内に収める
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         let r = 0, g = 0, b = 0, a = 0;
@@ -72,10 +72,10 @@ document.getElementById("image").addEventListener("change", (event) => {
           }
         }
         const outIdx = (y * width + x) * 4;
-        outputData[outIdx] = Math.round(r / kSum);
+        outputData[outIdx] = Math.round(r / kSum); // 出力配列に、rgbaそれぞれ256で割った値を格納
         outputData[outIdx + 1] = Math.round(g / kSum);
         outputData[outIdx + 2] = Math.round(b / kSum);
-        outputData[outIdx + 3] = Math.round(a / kSum);
+        outputData[outIdx + 3] = Math.round(a / kSum); // aは処理する場合と処理しない場合がある？
       }
     }
 
@@ -99,3 +99,6 @@ document.getElementById("image").addEventListener("change", (event) => {
 // https://nsi-freak.com/gaussian/
 // 参考
 // https://enth-imaginary-rail.jp/memorandum/jsblur/
+// https://www.clg.niigata-u.ac.jp/~medimg/practice_medical_imaging/imgproc_scion/4filter/index.htm
+
+// ２d畳み込み　https://stackoverflow.com/questions/64669531/2d-convolution-for-javascript-arrays

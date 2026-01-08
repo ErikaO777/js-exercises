@@ -34,7 +34,8 @@ test('inline-circle has expected inline styles', async ({ page }) => {
 
   expect(props.borderRadius).toBe('48% 52% 45% 55% / 55% 45% 52% 48%');
   expect(props.transform).toBe('rotate(-8deg) translateY(6%)');
-  expect(props.background).toBe('radial-gradient(circle at 40% 60%, #ff9a9e, #fad0c4)');
+  // RGB表記に変わる
+  expect(props.background).toBe('radial-gradient(circle at 40% 60%, rgb(255, 154, 158), rgb(250, 208, 196))');
   expect(props.border).toBe('none');
   expect(props.width).toBe('0.9em');
   expect(props.height).toBe('0.9em');
