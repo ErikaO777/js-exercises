@@ -44,7 +44,39 @@ async function serveContentsHandler(url, _req, res) {
 // CSP のヘッダを返すミドルウェア
 function cspMiddleware(_url, req, res) {
   // TODO: CSP ヘッダを設定する
-  // res.setHeader("Content-Security-Policy", "TODO");
+
+  const origin = req.headers.origin || 'http://localhost:3000';
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // アクセスをブロック
+  try {
+    const path = req.url || req.path;
+    if (path === './world.js' || path.endsWith('/world.js')) {
+      res.statusCode = 403;
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.end('Blocked by server policy');
+      return false;
+    }
+  } catch { }
+
+  // Content-Security-Policy ヘッダを設定
+  res.setHeader(
+    'Content-Security-Policy',
+    [
+      "default-src 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+      "frame-ancestors 'none'",
+      "script-src 'self' 'unsafe-inline'",
+      "style-src 'self'",
+      "img-src 'self' data:",
+      "font-src 'self'",
+      "connect-src 'self'",
+    ].join('; ')
+  );
+
   return true;
 }
 

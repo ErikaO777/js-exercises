@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
 import url from "node:url";
+import express from 'express';
 
 // ES Modules で __dirname を取得
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
@@ -243,8 +244,15 @@ function cookieAuthzMiddleware(_url, req, res, params) {
 // CORS のヘッダを返すミドルウェア
 function corsMiddleware(_url, _req, res) {
   // TODO: CORS に必要なヘッダを複数設定する
-  res.setHeader("TODO", "TODO");
-  return true;
+
+  const origin = _req.headers.origin || 'http://localhost:3000';
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); // クッキーを許可
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  return true; // ここでレスポンス完了
+
 }
 
 // リクエストボディを読み込む関数
@@ -348,7 +356,7 @@ async function main() {
     .createServer(async function (req, res) {
       await routes(
         // TODO: この行のコメントを外す
-        // ["OPTIONS", "/api/*", nopHandler, cors],
+        ["OPTIONS", "/api/*", nopHandler, cors],
         ["GET", "/api/tasks", listTasksHandler, authz, cors],
         ["GET", "/api/tasks/{id}", getTaskHandler, authz, cors],
         ["POST", "/api/tasks", createTaskHandler, authz, cors],
@@ -362,3 +370,6 @@ async function main() {
 }
 
 await main();
+
+// https://christina04.hatenablog.com/entry/2016/12/09/190000
+// https://route-zero.com/recruit/route/1205/

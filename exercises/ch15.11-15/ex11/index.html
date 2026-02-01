@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="module" src="/ch15.11-15/ex11/index.js"></script>
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 320px;
+        }
+
+        .card h2 {
+            margin: 0 0 20px;
+            color: #333;
+        }
+
+        .upload-btn {
+            background: #667eea;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .file-name {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            word-break: break-all;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        #uploadForm {
+            margin-top: 24px;
+        }
+
+        #uploadForm button {
+            width: 100%;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #uploadForm button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(56, 161, 105, 0.4);
+            filter: brightness(1.05);
+        }
+
+        #uploadForm button:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 12px rgba(56, 161, 105, 0.3);
+        }
+
+        #uploadForm button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="card">
+        <h2>アクセストークン</h2>
+        <input type="text" id="accessToken" placeholder="アクセストークンを入力">
+
+        <h2>ファイルを選択</h2>
+
+        <input type="file" id="fileInput" onchange="showFileName()">
+        <button class="upload-btn" onclick="openFileDialog()">
+            ファイルを選ぶ
+        </button>
+
+        <div class="file-name" id="fileName">
+            まだファイルは選択されていません
+        </div>
+
+        <form id="uploadForm">
+            <button type="submit">アップロード</button>
+        </form>
+    </div>
+
+    <script>
+        function openFileDialog() {
+            document.getElementById("fileInput").click();
+        }
+
+        function showFileName() {
+            const input = document.getElementById("fileInput");
+            const fileNameArea = document.getElementById("fileName");
+
+            if (input.files.length > 0) {
+                fileNameArea.textContent = input.files[0].name;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
