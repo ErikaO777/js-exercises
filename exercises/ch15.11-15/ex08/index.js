@@ -53,14 +53,21 @@ form?.addEventListener("submit", (e) => {
 // レスポンスを受け取る
 ws.addEventListener("message", (res) => {
     console.log("Received:", res);
-    const response = JSON.parse(res.data);
 
-    if (response.requestId === 1) {
-        response1.textContent = response.payload;
-    } else if (response.requestId === 2) {
-        response2.textContent = response.payload;
-    } else if (response.requestId === 3) {
-        response3.textContent = response.payload;
+    try {
+        const response = JSON.parse(res.data);
+
+        if (response.requestId === 1) {
+            response1.textContent = response.payload;
+        } else if (response.requestId === 2) {
+            response2.textContent = response.payload;
+        } else if (response.requestId === 3) {
+            response3.textContent = response.payload;
+        }
+    } catch (error) {
+        response1.textContent = "Error: " + error.message;
+        response2.textContent = "Error: " + error.message;
+        response3.textContent = "Error: " + error.message;
     }
 
 });

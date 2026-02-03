@@ -2,11 +2,13 @@ const form = document.querySelector("#new-todo-form");
 const list = document.querySelector("#todo-list");
 const input = document.querySelector("#new-todo");
 
+// localstrageがないとき用の一時的なメモリ
+let memoryTodos = [];
+
 // はじめに開かれたときにlistにはlocalStorageから読み込んだデータを表示
 function render() {
   if (!window.localStorage) {
     console.log("localstorage非対応");
-    // ここを変える
   }
 
   const items = getItems();
@@ -87,11 +89,23 @@ if (form) {
 
 // 関数テストのためにget,setを追加
 export function getItems() {
-  return JSON.parse(window.localStorage.getItem('todoItems')) || [];
+  try {
+    // まず localStorage にトライ
+    const raw = window.localStorage.getItem('todoItems');
+    return JSON.parse(raw) || [];
+  } catch (e) {
+    // localStorage がないとき
+    return Array.isArray(memoryTodos) ? memoryTodos.slice() : [];
+  }
 }
 
 export function setItems(items) {
-  window.localStorage.setItem('todoItems', JSON.stringify(items));
+  try {
+    window.localStorage.setItem('todoItems', JSON.stringify(items));
+  } catch (e) {
+    // localStorage がないとき
+    memoryTodos = Array.isArray(items) ? items.slice() : [];
+  }
 }
 
 // 送信されたらlocalStorageに保存するようにする

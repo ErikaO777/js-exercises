@@ -38,6 +38,8 @@ form.addEventListener("submit", (e) => {
   // new-todo の中身は空にする
   input.value = "";
 
+  console.log("クッキー: " + document.cookie);
+
   // TODO: ここで API を呼び出して新しいタスクを作成し
   // 成功したら作成したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
 
