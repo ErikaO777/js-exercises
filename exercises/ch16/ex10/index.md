@@ -1,0 +1,3 @@
+### fs.readとfs.createReadStreamの違い
+fs.readは一度にすべて読み込むのに対し、fs.createReadStreamはストリーム形式で順次読み込みを行う。
+よってメモリ消費はfs.readはファイルサイズに比例するのに対し、fs.createReadStreamは常に一定になる。
