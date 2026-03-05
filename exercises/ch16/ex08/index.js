@@ -1,6 +1,6 @@
 const owner = 'ErikaO777';
 const repository = 'js-exercises';
-const token = process.argv[0]; // トークンはコマンドラインから受け取る
+const token = process.argv[2]; // トークンはコマンドラインから受け取る
 
 const url = `https://api.github.com/repos/${owner}/${repository}/issues`;
 
