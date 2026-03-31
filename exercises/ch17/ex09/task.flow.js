@@ -1,11 +1,22 @@
+//      
 // 以下の型を定義すること
 //  - User: { id: number, name: string }
 //  - Task: { title: string, completed: boolean, user: User }
 //  - Priority: "low"|"middle"|"high"のいずれかの値をとる
 //  - PriorityTask: Taskかつ{ priority: Priority }を持つ型
 
+// 型定義
+                                         
+                                                              
+                                          
+                                                  
+
+// 変数
+let id         = 0;
+let name         = 'user';
+
 // Userオブジェクトであることを判定する
-function isUserObject(obj) {
+function isUserObject(obj       )          {
   return (
     typeof obj === 'object' &&
     typeof obj['id'] === 'number' &&
@@ -14,17 +25,17 @@ function isUserObject(obj) {
 }
 
 export class TaskManager {
-  _tasks = [];
+  _tasks              = [];
 
   // タスクを追加する
-  add(task) {
+  add(task      )       {
     this._tasks.push(task);
   }
 
   // タスクを完了にする
   // Userオブジェクトを指定した場合はそのUserのタスクを全て完了にする
   // 文字列を指定した場合は、そのタイトルのタスクを全て完了にする
-  completeTask(target) {
+  completeTask(target               )       {
     if (isUserObject(target)) {
       this._tasks
         .filter((t) => t.user === target)
@@ -38,7 +49,7 @@ export class TaskManager {
 
   // 引数の関数にマッチするタスクを返す
   // 引数を省略した場合はすべてのタスクを返す
-  getTasks(predicate) {
+  getTasks(predicate                          )              {
     if (predicate === undefined) {
       return this._tasks;
     } else {
@@ -48,11 +59,14 @@ export class TaskManager {
 }
 
 // priority="low"または完了済のタスクを判定する
-export function isLowOrCompletedTask(priorityTask) {
+export function isLowOrCompletedTask(priorityTask              )          {
   return priorityTask.priority === 'low' || priorityTask.completed;
 }
 
 // 判定関数の否定結果を返す関数を生成する
-export function not(f) {
+export function not   (f                     )                      {
   return (arg) => !f(arg);
 }
+
+// https://qiita.com/kiida/items/ea758e4d80053663e12a
+// NodeはFlowを理解できないため
