@@ -7,7 +7,7 @@ describe('GitHub Issue CLI with Polly', () => {
     beforeEach(() => {
         polly = setupPolly('github-issue-test');
 
-        setToken('dummy-token'); // テスト用にトークンをセット
+        setToken('***'); // テスト用にトークンをセット
 
         // setConfig({
         //     owner: 'pollyjs',
@@ -26,13 +26,13 @@ describe('GitHub Issue CLI with Polly', () => {
         expect(Array.isArray(issues)).toBe(true);
     });
 
-    test('createIssue creates a new issue', async () => {
-        const issue = await createIssue('Test title', 'Test body');
-        expect(issue.title).toBe('Test title');
-    });
+    // test('createIssue creates a new issue', async () => {
+    //     const issue = await createIssue('Test title', 'Test body');
+    //     expect(issue.title).toBe('Test title');
+    // });
 
-    test('closeIssue closes an issue', async () => {
-        const issue = await closeIssue(1);
-        expect(issue.state).toBe('closed');
-    });
+    // test('closeIssue closes an issue', async () => {
+    //     const issue = await closeIssue(1);
+    //     expect(issue.state).toBe('closed');
+    // });
 });

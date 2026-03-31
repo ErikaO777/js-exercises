@@ -1,0 +1,4 @@
+- Node.jsのグローバルfetchはundiciベースで、@pollyjs/adapter-node-http（http/https モジュール用）では捕捉できない
+- @pollyjs/adapter-fetchはブラウザの window.fetchやnode-fetch向けで、Node.js 18+のネイティブfetch（undici ベース）には対応していない
+- →Polly がリクエストをインターセプトしても録画とうまくマッチングしないことがある
+- PATCH,GET,POST一気にrecordが作成されず一件ずつしかrecordできない？

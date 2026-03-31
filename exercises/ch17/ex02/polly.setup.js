@@ -1,23 +1,23 @@
 import { Polly } from '@pollyjs/core';
 import FetchAdapter from '@pollyjs/adapter-fetch';
-import NodeHttpAdapter from '@pollyjs/adapter-node-http';
 import FSPersister from '@pollyjs/persister-fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-Polly.register(NodeHttpAdapter);
+const recordingsDir = path.join(__dirname, '__recordings__');
+console.log('recordingsDir:', recordingsDir);
+// Polly.register(NodeHttpAdapter);
 Polly.register(FetchAdapter);
 Polly.register(FSPersister);
 
 export function setupPolly(name) {
     const polly = new Polly(name, {
-        adapters: ['fetch', 'node-http'],
+        adapters: ['fetch'],
         persister: 'fs',
         persisterOptions: {
             fs: {
-                recordingsDir: path.join(__dirname, '__recordings__'),
+                recordingsDir: recordingsDir,
             },
         },
         recordIfMissing: false,
@@ -39,5 +39,14 @@ export function setupPolly(name) {
             },
         },
     });
+
+    // 録画保存前にトークンを除去するフック
+    polly.server.any().on('beforePersist', (req, recording) => {
+        // request ヘッダーから authorization を除去
+        recording.request.headers = recording.request.headers.filter(
+            (h) => h.name.toLowerCase() !== 'authorization'
+        );
+    });
+
     return polly;
 }
