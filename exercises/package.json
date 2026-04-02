@@ -1,0 +1,46 @@
+{
+  "name": "preset-js",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
+    "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
+    "test:e2e": "playwright test",
+    "test:browser": "playwright test",
+    "server": "serve",
+    "lint": "eslint \"ch17/**/*.{js,jsx}\"",
+    "lint:fix": "eslint \"ch17/**/*.{js,jsx}\" --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
+  },
+  "author": "",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@pollyjs/adapter-fetch": "^6.0.7",
+    "@pollyjs/adapter-node-http": "^6.0.6",
+    "@pollyjs/core": "^6.0.6",
+    "@pollyjs/persister-fs": "^6.0.6",
+    "eslint": "^8.57.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "fake-indexeddb": "^6.2.5",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "prettier": "^3.8.1",
+    "serve": "^14.2.3",
+    "supertest": "^7.2.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "express": "^5.2.1",
+    "iconv-lite": "^0.7.2",
+    "mermaid": "^11.12.1",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.18",
+    "ws": "^8.19.0"
+  }
+}
